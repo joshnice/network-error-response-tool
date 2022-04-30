@@ -7,9 +7,8 @@ const cors = require("cors");
 app.use(cors());
 
 app.get("/", (req, res) => {
-    res.send("default!")
-  });
-  
+    res.send("To return an error make a request: localhost:3030/errorCode");
+});
 
 app.get("/health_check", (req, res) => {
   res.send("Working!")
@@ -23,7 +22,7 @@ app.get("/:errorCode", (req,res) => {
     try {
         res.status(errorCode).send(`Error code ${errorCode} returned`);
     } catch {
-        res.status(500).send(`Error code ${paramErrorCode} was incorrect`);
+        res.status(500).send(`Error code ${paramErrorCode} was not valid`);
     }
 
 });
